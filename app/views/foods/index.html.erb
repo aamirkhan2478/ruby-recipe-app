@@ -1,2 +1,28 @@
-<h1>Foods#index</h1>
-<p>Find me in app/views/foods/index.html.erb</p>
+<div class="container mt-4">
+
+  <%= render  'shared/modal'%>
+    <table class="table table-hover table-bordered mt-4 table-responsive{-sm|-md|-lg|-xl} ">
+        <thead>
+          <tr>
+            <th scope="col">Name</th>
+            <th scope="col">Measurement</th>
+            <th scope="col">Price</th>
+            <th scope="col">Quantity</th>
+            <th scope="col">Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @foods.each do |food| %>
+          <tr>
+            <td><%= food.name%></td>
+            <td><%= food.measurement_unit%></td>
+            <td>$<%= food.price%></td>
+            <td><%= food.quantity%></td>
+            <td>
+              <%= button_to "Delete", food_path(food.id), method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-danger" %>
+            </td>
+          </tr>
+          <%end%>
+        </tbody>
+      </table>
+</div>

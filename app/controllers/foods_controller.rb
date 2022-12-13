@@ -2,7 +2,6 @@ class FoodsController < ApplicationController
   def create
     @user = current_user
     @food = @user.foods.new(food_params)
-    @food.user_id = current_user.id
     if @food.save
       redirect_to root_path, notice: 'Food was successfully created.'
     else
@@ -28,6 +27,6 @@ class FoodsController < ApplicationController
   private
 
   def food_params
-    params.require(:food).permit(:name, :measurement_unit, :price, :quantity)
+    params.permit(:name, :measurement_unit, :price, :quantity, current_user.id)
   end
 end

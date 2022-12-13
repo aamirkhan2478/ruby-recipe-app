@@ -8,6 +8,7 @@ class FoodsController < ApplicationController
       render :new, alert: 'Food was not created.'
     end
   end
+
   def new
     @food = Food.new
   end
@@ -22,7 +23,6 @@ class FoodsController < ApplicationController
     @food.destroy
     redirect_to root_path, notice: 'Food was successfully deleted.'
   end
-
 
   private
 

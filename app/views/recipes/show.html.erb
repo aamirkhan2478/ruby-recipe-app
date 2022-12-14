@@ -19,21 +19,18 @@
   </div>
   <div class="row">
     <div class="col-md-8">
-      <button class="btn btn-primary">Generate Shopping List</button>
+      <%= link_to 'General shopping list', shopping_list_index_path, class: 'btn btn-primary' %>
     </div>
     <div class="col-md-4">
       <!-- Button trigger modal -->
-      <button type="button" class="btn btn-primary me-3" data-bs-toggle="modal" data-bs-target="#exampleModal">
-        Add Ingredients
-      </button>
-      <%= render "shared/modal" %>
+      <%= link_to 'Add Ingredient', new_recipe_recipe_food_path(@recipe.id), class: 'btn btn-primary' %>
     </div>
     <table class="table table-hover table-bordered mt-4 table-responsive{-sm|-md|-lg|-xl} ">
       <thead>
         <tr>
           <th scope="col">Name</th>
           <th scope="col">Price</th>
-          <th scope="col">Quantity</th>
+          <th scope="col">Value</th>
           <th scope="col">Action</th>
         </tr>
       </thead>
@@ -42,7 +39,11 @@
           <tr>
             <td><%= food.name%></td>
             <td>$<%= food.price%></td>
-            <td><%= food.quantity%> <%= food.measurement_unit %></td>
+            <td>
+              <% sum = 0 %>
+                <% sum += food.quantity * food.price %>
+              <%= "Total price: $#{sum}" %>
+            </td>
             <td>
               <%= button_to "Delete", food_path(food.id), method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-danger" %>
             </td>

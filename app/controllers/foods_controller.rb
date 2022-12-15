@@ -1,4 +1,5 @@
 class FoodsController < ApplicationController
+  load_and_authorize_resource
   def create
     @user = current_user
     @food = @user.foods.new(food_params)
@@ -14,8 +15,7 @@ class FoodsController < ApplicationController
   end
 
   def index
-    @user = current_user
-    @foods = @user.foods
+    @foods = Food.all
   end
 
   def destroy

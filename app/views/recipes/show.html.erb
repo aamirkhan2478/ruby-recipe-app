@@ -7,13 +7,15 @@
       <p>Step go here...</p>
     </div>
     <div class="col-md-4">
-      <%= form_with model:@recipe, url:recipe_path(@recipe.id), html:{method: :put} do |f| %>
-        <button type="submit" class="btn" id="recipe_public">
-          <div class="form-check form-switch">
-            <%= f.label :public, class:"form-check-label" %>
-            <%= f.check_box :public, class:"form-check-input" %>
-          </div>
-        </button>
+      <% if can? :update, @recipe %>
+        <%= form_with model:@recipe, url:recipe_path(@recipe.id), html:{method: :put} do |f| %>
+          <button type="submit" class="btn" id="recipe_public">
+            <div class="form-check form-switch">
+              <%= f.label :public, class:"form-check-label" %>
+              <%= f.check_box :public, class:"form-check-input" %>
+            </div>
+          </button>
+        <% end %>
       <% end %>
     </div>
   </div>
@@ -22,34 +24,39 @@
       <%= link_to 'General shopping list', shopping_list_index_path, class: 'btn btn-primary' %>
     </div>
     <div class="col-md-4">
-      <!-- Button trigger modal -->
+    <% if @recipe.public == true %>
       <%= link_to 'Add Ingredient', new_recipe_recipe_food_path(@recipe.id), class: 'btn btn-primary' %>
+      <% end %>
     </div>
-    <table class="table table-hover table-bordered mt-4 table-responsive{-sm|-md|-lg|-xl} ">
-      <thead>
-        <tr>
-          <th scope="col">Name</th>
-          <th scope="col">Price</th>
-          <th scope="col">Value</th>
-          <th scope="col">Action</th>
-        </tr>
-      </thead>
-      <tbody>
-        <% @recipe_foods.each do |food| %>
+    <% if @recipe.public == true %>
+      <table class="table table-hover table-bordered mt-4 table-responsive{-sm|-md|-lg|-xl} ">
+        <thead>
           <tr>
-            <td><%= food.food.name%></td>
-            <td>$<%= food.food.price%></td>
-            <td>
-              <% sum = 0 %>
-              <% sum += food.quantity * food.food.price %>
-              <%= "Total price: $#{sum}" %>
-            </td>
-            <td>
-              <%= button_to "Delete", recipe_recipe_food_path(@recipe.id,food.id), method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-danger" %>
-            </td>
+            <th scope="col">Name</th>
+            <th scope="col">Quantity</th>
+            <th scope="col">Value</th>
+            <th scope="col">Action</th>
           </tr>
-        <%end%>
-      </tbody>
-    </table>
+        </thead>
+        <tbody>
+          <% @recipe_foods.each do |food| %>
+            <tr>
+              <td><%= food.food.name%></td>
+              <td><%= food.quantity%><%= food.food.measurement_unit %></td>
+              <td>
+                <% sum = 0 %>
+                <% sum += food.quantity * food.food.price %>
+                <%= "Total price: $#{sum}" %>
+              </td>
+              <td>
+                <% if can? :destroy, @recipe %>
+                  <%= button_to "Delete", recipe_recipe_food_path(@recipe.id,food.id), method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-danger" %>
+                <% end %>
+              </td>
+            </tr>
+          <%end%>
+        </tbody>
+      </table>
+    <% end %>
   </div>
 </div>

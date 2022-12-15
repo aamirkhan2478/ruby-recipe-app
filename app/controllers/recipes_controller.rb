@@ -1,4 +1,5 @@
 class RecipesController < ApplicationController
+  load_and_authorize_resource
   def new
     @recipe = Recipe.new
   end

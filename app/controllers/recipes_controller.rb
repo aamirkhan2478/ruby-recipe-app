@@ -20,16 +20,14 @@ class RecipesController < ApplicationController
 
   def show
     @recipe = Recipe.find(params[:id])
-    @recipe_food = @recipe.recipe_foods
-    # @foods = Food.where(id: @recipe_food.pluck(:food_id))
-    # @recipe_foods = RecipeFood.where(recipe_id: @recipe.id)
-    # @foods = Food.where(id: @recipe_foods.pluck(:food_id))
+    @user = current_user
+    @recipe_foods = RecipeFood.all 
   end
 
   def destroy
     @recipe = Recipe.find(params[:id])
     @recipe.destroy
-    redirect_to recipes_path, notice: 'Recipe was deleted successfully'
+    redirect_to recipes_path, notice: 'Recipe was successfully deleted'
   end
 
   def update

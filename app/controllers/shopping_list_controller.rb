@@ -8,9 +8,9 @@ class ShoppingListController < ApplicationController
     @recipe_foods.each do |recipe_food|
       @shopping_list << recipe_food
     end
-    @final_list = @foods.where.not(id: @shopping_list.map(&:food_id));
+    @final_list = @foods.where.not(id: @shopping_list.map(&:food_id))
 
-    @price= @final_list.pluck(:price)
+    @price = @final_list.pluck(:price)
     @quantity = @final_list.pluck(:quantity)
     @total = @price.zip(@quantity).map { |x, y| x * y }.sum
   end

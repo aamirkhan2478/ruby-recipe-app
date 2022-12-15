@@ -21,7 +21,7 @@ class RecipesController < ApplicationController
   def show
     @recipe = Recipe.find(params[:id])
     @user = current_user
-    @recipe_foods = RecipeFood.all 
+    @recipe_foods = RecipeFood.all
   end
 
   def destroy

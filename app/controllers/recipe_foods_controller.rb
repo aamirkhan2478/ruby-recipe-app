@@ -1,15 +1,15 @@
 class RecipeFoodsController < ApplicationController
-    def index
+  def index
     @foods = current_user.recipes_foods.select(:food_id, 'SUM(quantity) as quantity').group(:food_id, :quantity)
     @sum = 0
     @foods.each do |food|
       @sum += food.quantity * food.food.price
     end
-    end
+  end
 
   def create
     @recipes_foods = RecipeFood.where('food_id = :x and recipe_id = :y',
-                                       x: recipes_foods_params[:food_id], y: recipes_foods_params[:recipe_id])
+                                      x: recipes_foods_params[:food_id], y: recipes_foods_params[:recipe_id])
 
     if @recipes_foods.size.zero?
       @recipes_foods = RecipeFood.new(recipes_foods_params)
@@ -56,7 +56,7 @@ class RecipeFoodsController < ApplicationController
   end
 
   def destroy
-    @recipe_food  = RecipeFood.where(:recipe_id => params[:recipe_id] , :food_id => params[:id])
+    @recipe_food = RecipeFood.where(recipe_id: params[:recipe_id], food_id: params[:id])
     @recipe_food.destroy
     redirect_to recipe_path(params[:recipe_id])
   end

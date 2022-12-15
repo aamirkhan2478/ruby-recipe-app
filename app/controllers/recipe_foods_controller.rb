@@ -56,8 +56,9 @@ class RecipeFoodsController < ApplicationController
   end
 
   def destroy
-    RecipeFood.destroy(params[:id])
-    redirect_to recipe_path(recipes_foods_params[:recipe_id])
+    @recipe_food  = RecipeFood.where(:recipe_id => params[:recipe_id] , :food_id => params[:id])
+    @recipe_food.destroy
+    redirect_to recipe_path(params[:recipe_id])
   end
 
   # Only allow a list of trusted parameters through.

@@ -38,25 +38,8 @@ class RecipeFoodsController < ApplicationController
     @recipe = current_user.recipes.find(params[:recipe_id])
   end
 
-  def show; end
-
-  def edit
-    @recipe_food = RecipeFood.find(params[:id])
-  end
-
-  def update
-    @recipe_food = RecipeFood.find(params[:id])
-    if @recipe_food.update(recipes_foods_params)
-      flash[:succes] = 'Recipe food updated successfully'
-      redirect_to recipe_path(@recipe_food.recipe)
-    else
-      flash[:error] = 'Recipe food update failed'
-      render :edit
-    end
-  end
-
   def destroy
-    @recipe_food = RecipeFood.where(recipe_id: params[:recipe_id], food_id: params[:id])
+    @recipe_food = RecipeFood.find(params[:id])
     @recipe_food.destroy
     redirect_to recipe_path(params[:recipe_id])
   end

@@ -49,15 +49,14 @@ gem 'rails-controller-testing'
 gem 'cancancan'
 # Use Active Storage variants [https://guides.rubyonrails.org/active_storage_overview.html#transforming-images]
 # gem "image_processing", "~> 1.2"
- gem 'ffi', github: 'ffi/ffi', submodules: true
+gem 'ffi', github: 'ffi/ffi', submodules: true
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
-  gem 'debug', platforms: %i[mri mingw x64_mingw]
   gem 'bullet'
+  gem 'debug', platforms: %i[mri mingw x64_mingw]
   gem 'rails-controller-testing'
   gem 'rspec-rails', '>= 3.9.0'
   gem 'shoulda-matchers', '~> 5.0'
-
 end
 
 group :development do
@@ -74,7 +73,7 @@ end
 
 group :test do
   # Use system testing [https://guides.rubyonrails.org/testing.html#system-testing]
-   gem 'capybara'
+  gem 'capybara'
   gem 'selenium-webdriver'
   gem 'webdrivers'
 end

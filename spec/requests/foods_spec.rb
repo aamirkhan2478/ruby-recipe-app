@@ -9,11 +9,11 @@ RSpec.describe 'Foods', type: :request do
     end
 
     it 'should return http request' do
-      expect(response.status).to eq(302) #redirected
+      expect(response.status).to eq(302) # redirected
     end
 
     it 'should render correct path' do
-      path = "http://www.example.com/users/sign_in"
+      path = 'http://www.example.com/users/sign_in'
       expect(response).to redirect_to(path)
     end
 

@@ -46,7 +46,9 @@
           <div class="row">
             <div class="col-md-4">
               <h2><%= recipe.name %></h2>
-              <%= button_to "Delete", recipe_path(recipe.id), class:"btn btn-outline-danger", method: :delete %>
+              <% if can? :destroy, recipe %>
+                <%= button_to "Delete", recipe_path(recipe.id), class:"btn btn-outline-danger", method: :delete %>
+              <% end %>
             </div>
             <div class="col-md-8">
               <p><%= recipe.description %></p>

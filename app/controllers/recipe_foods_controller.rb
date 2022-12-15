@@ -1,4 +1,5 @@
 class RecipeFoodsController < ApplicationController
+  load_and_authorize_resource
   def index
     @foods = current_user.recipes_foods.select(:food_id, 'SUM(quantity) as quantity').group(:food_id, :quantity)
     @sum = 0
@@ -30,12 +31,12 @@ class RecipeFoodsController < ApplicationController
   end
 
   def new
-    @foods = current_user.foods
+    @foods = Food.all
     @food_items = []
     @foods.each do |food|
       @food_items << [food.name, food.id]
     end
-    @recipe = current_user.recipes.find(params[:recipe_id])
+    @recipe = Recipe.find(params[:recipe_id])
   end
 
   def destroy

@@ -1,6 +1,6 @@
-require "rails_helper"
+require 'rails_helper'
 
-RSpec.describe "Recipe", type: :system do
+RSpec.describe 'Recipe', type: :system do
   user = User.create(name: 'John', email: 'john@gmail.com', password: '123456')
 
   subject do
@@ -9,18 +9,17 @@ RSpec.describe "Recipe", type: :system do
   before { subject.save }
 
   describe 'index page' do
-    it "I can see the button." do
+    it 'I can see the button.' do
       visit recipes_path
       page.has_button?('Add Recipe')
     end
-    it "I can see the recipe name." do
+    it 'I can see the recipe name.' do
       visit recipes_path
       page.has_content?('Chicken')
     end
-    it "I can see the recipe description." do
-        visit recipes_path
-        page.has_content?('Chicken with rice')
+    it 'I can see the recipe description.' do
+      visit recipes_path
+      page.has_content?('Chicken with rice')
     end
-
-end
+  end
 end

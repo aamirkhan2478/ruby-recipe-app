@@ -53,7 +53,7 @@
                   <%= "Total price: $#{sum}" %>
                 </td>
                 <td>
-                  <% if can? :update, @recipe %>
+                  <% if can? :update, @recipe.recipe_foods %>
                   <%= button_to "Delete", recipe_recipe_food_path(@recipe.id,food.id), method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-danger" %>
                   <% end %>
                 </td>

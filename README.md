@@ -2,11 +2,11 @@
 
 <!-- PROJECT DESCRIPTION -->
 
-# 📖 [RECIPE-RUBY-APP] <a name="about-project"></a>
+# 📖 RECIPE-RUBY-APP <a name="about-project"></a>
 
 > Describe your project in 1 or 2 sentences.
 
-**[Rails blog app]** This App keeps track of all your recipes, ingredients, and inventory. It allows you to save ingredients, keep track of what you have in store, create recipes, and generate a shopping list based on what you have and what you are missing from a recipe.
+**Recipe-ruby app** This App keeps track of all your recipes, ingredients, and inventory. It allows you to save ingredients, keep track of what you have in store, create recipes, and generate a shopping list based on what you have and what you are missing from a recipe.
 
 ## 🛠 Built With <a name="built-with">Rails</a>
 

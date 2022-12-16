@@ -7,10 +7,10 @@ class Ability
     else
       can %i[update destroy], Recipe, user_id: user.id
       can %i[destroy], Food, user_id: user.id
-      can %i[destroy], RecipeFood, user_id: user.id
       can :create, Food
       can :create, Recipe
       can :create, RecipeFood
+      can :destroy, RecipeFood
       can :read, :all
     end
   end

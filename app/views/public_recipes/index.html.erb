@@ -6,7 +6,7 @@
           <div class="d-flex justify-content-between mx-4">
             <div class="cols">
               <h5 class="card-title"><%= recipe.name %></h5>
-              <small>by: <%= current_user.name %></small>
+              <small>by: <%= recipe.user.name %></small>
             </div>
             <div class="cols">
               <h5 class="card-title">Total foods items: <%= recipe.recipe_foods.includes(:food).count%></h5>

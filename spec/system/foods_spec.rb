@@ -10,23 +10,23 @@ RSpec.describe 'Recipe', type: :system do
 
   describe 'index page' do
     it 'I can see the button.' do
-      visit foods_path
+      visit root_path
       page.has_button?('Add Food')
     end
     it 'I can see the food name.' do
-      visit foods_path
+      visit root_path
       page.has_content?('Chicken')
     end
     it 'I can see the food measurement unit.' do
-      visit foods_path
+      visit root_path
       page.has_content?('kg')
     end
     it 'I can see the food price.' do
-      visit foods_path
+      visit root_path
       page.has_content?('10')
     end
     it 'I can see the food quantity.' do
-      visit foods_path
+      visit root_path
       page.has_content?('1')
     end
   end
